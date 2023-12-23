@@ -10,6 +10,9 @@ const minusBtn = document.querySelector("#minus");
 const multiplyBtn = document.querySelector("#multiply");
 const divideBtn = document.querySelector("#divide");
 
+const equalsBtn = document.querySelector("#equals");
+const plusMinusBtn = document.querySelector("#plus-minus");
+
 const oneBtn = document.querySelector("#one");
 const twoBtn = document.querySelector("#two");
 const threeBtn = document.querySelector("#three");
@@ -22,13 +25,25 @@ const nineBtn = document.querySelector("#nine");
 
 clearBtn.addEventListener("click", () => {
     numList.splice(0, numList.length);
-    updateDisplay("0");
+    updateDisplay();
 });
+
+plusMinusBtn.addEventListener("click", () => {
+    if (!isNaN(parseInt(numList[numList.length - 1]))) { 
+        numList[numList.length - 1] *= -1
+    }
+    updateDisplay();
+})
 
 plusBtn.addEventListener("click", () => handleOperatorClick("+"));
 minusBtn.addEventListener("click", () => handleOperatorClick("-"));
 multiplyBtn.addEventListener("click", () => handleOperatorClick("*"));
 divideBtn.addEventListener("click", () => handleOperatorClick("/"));
+
+equalsBtn.addEventListener("click", () => {
+    numList = [operate(numList[0], numList[2], numList[1])];
+    updateDisplay();
+});
 
 oneBtn.addEventListener("click", () => handleNumberClick(1));
 twoBtn.addEventListener("click", () => handleNumberClick(2));
@@ -46,11 +61,15 @@ function handleNumberClick(num) {
     } else {
         numList.push(num);
     }
-    updateDisplay(numList.join(" "));
+    updateDisplay();
 }
 
 function handleOperatorClick(oper) {
-    if (
+    if (numList.length === 3) {
+        result = operate(numList[0], numList[2], numList[1]);
+        numList.splice(0, 3, result);
+        numList.push(oper);
+    } else if (
         numList.length != 0 &&
         numList[numList.length - 1] !== "+" &&
         numList[numList.length - 1] !== "-" &&
@@ -59,11 +78,11 @@ function handleOperatorClick(oper) {
     ) {
         numList.push(oper);
     }
-    updateDisplay(numList.join(" "));
+    updateDisplay();
 }
 
-function updateDisplay(text) {
-    display.textContent = text;
+function updateDisplay() {
+    display.textContent = numList.length > 0 ? numList.join(" "): 0;
 }
 
 function operate(a, b, operator) {
@@ -84,7 +103,6 @@ function operate(a, b, operator) {
             result = "ERROR";
     }
     
-    updateDisplay(result);
     return result;
 }
 
