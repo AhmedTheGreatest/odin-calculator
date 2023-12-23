@@ -3,3 +3,109 @@
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+body {
+    background-color: #252525;
+    color: #fefefe;
+}
+
+.heading {
+    text-align: center;
+    font-size: 36px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.calculator-container {
+    display: flex;
+    justify-content: center;
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    border: 10px solid gray;
+    border-radius: 20px;
+    padding: 3px 3px;
+}
+
+.keypad {
+    display: flex;
+    flex-direction: column;
+}
+
+.keypad-row {
+    display: flex;
+    justify-content: space-around;
+    flex: 1 1 auto;
+}
+
+.keypad-btn {
+    flex: 1 1 80px;
+    width: 80px;
+    height: 80px;
+    border: 0;
+    background-color: #fefefe;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 2px;
+}
+
+#zero {
+    flex: 16 1 160px;
+}
+
+#decimal {
+    background-color: #c5c5c5;
+}
+
+#display {
+    background-color: #535353;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    margin-top: 3px;
+    padding: 0px 20px;
+    height: 100px;
+    text-align: end;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+#display-text {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: end;
+}
+
+#divide {
+    background-color: orange;
+}
+
+#multiply {
+    background-color: orange;
+}
+
+#minus {
+    background-color: orange;
+}
+
+#plus {
+    background-color: orange;
+}
+
+#equals {
+    background-color: orange;
+}
+
+#row-1>.keypad-btn {
+    background-color: #73e973;
+}
