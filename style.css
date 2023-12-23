@@ -69,8 +69,8 @@ body {
 #display {
     background-color: #535353;
     border-radius: 10px;
+    margin: 2px;
     margin-bottom: 6px;
-    margin-top: 3px;
     padding: 0px 20px;
     height: 100px;
     text-align: end;
