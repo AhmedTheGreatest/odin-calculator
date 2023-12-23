@@ -75,6 +75,14 @@ sevenBtn.addEventListener("click", () => handleNumberClick(7));
 eightBtn.addEventListener("click", () => handleNumberClick(8));
 nineBtn.addEventListener("click", () => handleNumberClick(9));
 
+// If the backspace key is pressed, remove the last item from the numList
+document.addEventListener("keydown", (e) => {
+    if (e.key == "Backspace") {
+        numList.pop();
+        updateDisplay();
+    }
+})
+
 // Handles the clicking of number buttons
 function handleNumberClick(num) {
     // If the last item in numList is a valid number append the pressed num to its end, Else push the item to the end of the numList
