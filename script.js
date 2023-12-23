@@ -12,7 +12,9 @@ const divideBtn = document.querySelector("#divide");
 
 const equalsBtn = document.querySelector("#equals");
 const plusMinusBtn = document.querySelector("#plus-minus");
+const percentageBtn = document.querySelector("#percentage");
 
+const zeroBtn = document.querySelector("#zero");
 const oneBtn = document.querySelector("#one");
 const twoBtn = document.querySelector("#two");
 const threeBtn = document.querySelector("#three");
@@ -28,23 +30,33 @@ clearBtn.addEventListener("click", () => {
     updateDisplay();
 });
 
-plusMinusBtn.addEventListener("click", () => {
-    if (!isNaN(parseInt(numList[numList.length - 1]))) { 
-        numList[numList.length - 1] *= -1
-    }
-    updateDisplay();
-})
-
 plusBtn.addEventListener("click", () => handleOperatorClick("+"));
 minusBtn.addEventListener("click", () => handleOperatorClick("-"));
 multiplyBtn.addEventListener("click", () => handleOperatorClick("*"));
 divideBtn.addEventListener("click", () => handleOperatorClick("/"));
 
 equalsBtn.addEventListener("click", () => {
-    numList = [operate(numList[0], numList[2], numList[1])];
-    updateDisplay();
+    if (numList.length === 3) { 
+        numList = [operate(numList[0], numList[2], numList[1])];
+        updateDisplay();
+    }
 });
 
+plusMinusBtn.addEventListener("click", () => {
+    if (!isNaN(parseInt(numList[numList.length - 1]))) { 
+        numList[numList.length - 1] *= -1;
+        updateDisplay();
+    }
+})
+
+percentageBtn.addEventListener("click", () => {
+    if (!isNaN(parseInt(numList[numList.length - 1]))) {
+        numList[numList.length - 1] /= 100;
+        updateDisplay();
+    }
+})
+
+zeroBtn.addEventListener("click", () => handleNumberClick(0));
 oneBtn.addEventListener("click", () => handleNumberClick(1));
 twoBtn.addEventListener("click", () => handleNumberClick(2));
 threeBtn.addEventListener("click", () => handleNumberClick(3));
@@ -98,6 +110,9 @@ function operate(a, b, operator) {
             break;
         case "/":
             result = divide(a, b);
+            if (b == 0) {
+                result = "LOL";
+            }
             break;
         default:
             result = "ERROR";
